@@ -1,12 +1,11 @@
 ﻿using System.Collections.Generic;
 using MvcStarterProject.Business;
 using MvcStarterProject.DataAccess;
-using MvcStarterProject.Tests.IntegrationTests;
 using NUnit.Framework;
 using Should;
 using StructureMap;
 
-namespace MvcStarterProject.Tests.UnitTests.Business
+namespace MvcStarterProject.Tests.IntegrationTests.Business
 {
     public class When_calculating_the_total_price_of_an_order : IntegrationTest
     {
@@ -15,19 +14,18 @@ namespace MvcStarterProject.Tests.UnitTests.Business
 
         protected override void Establish_context()
         {
-            var dataContext = ObjectFactory.GetInstance<IDataContext>();
+            var productRepository = ObjectFactory.GetInstance<IRepository<Product>>();
+            var orderRepository = ObjectFactory.GetInstance<IRepository<Order>>();
  
             var product = new Product { Price = 10, IsActive = true, Name = "foo" };
-            dataContext.Products.Add(product);
+            productRepository.Save(product);
 
             _order = new Order
                          {
                              StateCode = "OH",
                              Products = new List<Product> { product }
                          };
-
-            dataContext.Orders.Add(_order);
-            dataContext.SaveChanges();
+            orderRepository.Save(_order);
         }
 
         protected override void Because_of()

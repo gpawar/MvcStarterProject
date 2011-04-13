@@ -12,6 +12,7 @@ namespace MvcStarterProject.DataAccess
         DbSet<Product> Products { get; set; }
         DbSet<Order> Orders { get; set; }
         int SaveChanges();
+        DbSet<TEntity> Set<TEntity>() where TEntity : class;
     }
 
     public class DataContext : DbContext, IDataContext
@@ -21,7 +22,7 @@ namespace MvcStarterProject.DataAccess
 
         public DataContext(string nameOrConnectionString) : base(nameOrConnectionString)
         {
-            this.Configuration.LazyLoadingEnabled = true;
+            Configuration.LazyLoadingEnabled = true;
         }
 
         protected override void OnModelCreating(System.Data.Entity.ModelConfiguration.ModelBuilder modelBuilder)

@@ -77,6 +77,8 @@
     <Compile Include="Config\StructureMap\StructureMapDependencyResolver.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="DataAccess\DataContext.cs" />
+    <Compile Include="DataAccess\IRepository.cs" />
+    <Compile Include="DataAccess\Repository.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
