@@ -72,6 +72,7 @@
     <Compile Include="UnitTests\Business\OrderTests.cs" />
     <Compile Include="UnitTests\Business\ShippingCalculatorTests.cs" />
     <Compile Include="UnitTests\Business\TaxCalculatorTests.cs" />
+    <Compile Include="UnitTests\Controllers\OrderControllerTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MvcStarterProject\MvcStarterProject.csproj">

@@ -37,6 +37,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\Entity Framework\EntityFramework.dll</HintPath>
     </Reference>
+    <Reference Include="HttpInterfaces">
+      <HintPath>..\..\lib\HttpInterfaces\HttpInterfaces.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="StructureMap">
       <HintPath>..\..\lib\StructureMap\StructureMap.dll</HintPath>
@@ -88,6 +91,7 @@
     <Compile Include="Config\StructureMap\StructureMapConfiguration.cs" />
     <Compile Include="Config\StructureMap\StructureMapDependencyResolver.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="DataAccess\DataContext.cs" />
     <Compile Include="DataAccess\IRepository.cs" />
     <Compile Include="DataAccess\Repository.cs" />
@@ -95,6 +99,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\OrderIndexViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
