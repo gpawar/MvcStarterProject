@@ -39,7 +39,7 @@ namespace MvcStarterProject
 
         public void InitializeContainer()
         {   
-            new StructureMapBootstrapper().Bootstrap();
+            StructureMapBootstrapper.Bootstrap();
         }
     }
 }

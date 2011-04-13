@@ -13,7 +13,8 @@ namespace MvcStarterProject.Tests
     public class Class1
     {
         [Test]
-        public void test_adding_a_product()
+        [Ignore]
+        public void Test_adding_a_product()
         {
             var dc = new DataContext(ConfigurationManager.ConnectionStrings["MainDatabase"].ConnectionString);
             dc.Products.Add(new Product {Name = "tv", Price = 800});

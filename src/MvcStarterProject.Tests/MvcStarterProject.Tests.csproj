@@ -45,6 +45,13 @@
     <Reference Include="Should">
       <HintPath>..\..\lib\Should\Should.dll</HintPath>
     </Reference>
+    <Reference Include="StructureMap, Version=2.6.1.0, Culture=neutral, PublicKeyToken=e60ad81abae3c223, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\StructureMap\StructureMap.dll</HintPath>
+    </Reference>
+    <Reference Include="StructureMap.AutoMocking">
+      <HintPath>..\..\lib\StructureMap\StructureMap.AutoMocking.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
@@ -56,7 +63,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="IntegrationTests\IntegrationTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Specification.cs" />
+    <Compile Include="TestDataBuilders\OrderBuilder.cs" />
+    <Compile Include="IntegrationTests\Business\OrderProcessorTests.cs" />
+    <Compile Include="UnitTests\Business\OrderTests.cs" />
+    <Compile Include="UnitTests\Business\ShippingCalculatorTests.cs" />
+    <Compile Include="UnitTests\Business\TaxCalculatorTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MvcStarterProject\MvcStarterProject.csproj">
@@ -67,10 +81,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="IntegrationTests\" />
-    <Folder Include="UnitTests\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
