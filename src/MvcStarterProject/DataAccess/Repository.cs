@@ -28,14 +28,14 @@ namespace MvcStarterProject.DataAccess
             return _set.Find(id);
         }
 
-        public IEnumerable<T> GetAll()
+        public IList<T> GetAll()
         {
             return _set.ToList();
         }
 
-        public IEnumerable<T> Find(Expression<Func<T, bool>> where)
+        public IList<T> Find(Expression<Func<T, bool>> where)
         {
-            return _set.Where(where);
+            return _set.Where(where).ToList();
         }
 
         public T Single(Expression<Func<T, bool>> where)

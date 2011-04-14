@@ -9,8 +9,8 @@ namespace MvcStarterProject.DataAccess
     {
         IQueryable<T> AsQueryable();
         T Get(int id);
-        IEnumerable<T> GetAll();
-        IEnumerable<T> Find(Expression<Func<T, bool>> where);
+        IList<T> GetAll();
+        IList<T> Find(Expression<Func<T, bool>> where);
         T Single(Expression<Func<T, bool>> where);
         T First(Expression<Func<T, bool>> where);
         void Delete(T entity);

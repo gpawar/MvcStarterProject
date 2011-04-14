@@ -1,0 +1,11 @@
+- UI
+- add a repository layer on top of the IDataContext?
+- pluggable repositories/get/setobjectservices
+- script out database
+- tests for scanners
+- use IGOS in OrderProcessor instead of repository
+
+- show list of products
+- when one is added to the cart, store the products in session
+- clear cart (no deleting of products from the cart)
+- show cart - product list, tax, shipping, total

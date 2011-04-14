@@ -65,14 +65,25 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Business\DeleteObjectService.cs" />
+    <Compile Include="Business\GetObjectService.cs" />
+    <Compile Include="Business\IDeleteObjectService.cs" />
+    <Compile Include="Business\IGetObjectService.cs" />
     <Compile Include="Business\IOrderProcessor.cs" />
+    <Compile Include="Business\ISaveObjectService.cs" />
     <Compile Include="Business\IShippingCalculator.cs" />
     <Compile Include="Business\ITaxCalculator.cs" />
     <Compile Include="Business\Order.cs" />
     <Compile Include="Business\OrderProcessor.cs" />
     <Compile Include="Business\Product.cs" />
+    <Compile Include="Business\SaveObjectService.cs" />
     <Compile Include="Business\ShippingCalculator.cs" />
     <Compile Include="Business\TaxCalculator.cs" />
+    <Compile Include="Config\StructureMap\CloseInterfaceConventionScanner.cs" />
+    <Compile Include="Config\StructureMap\DeleteObjectServiceConventionScanner.cs" />
+    <Compile Include="Config\StructureMap\GetObjectServiceConventionScanner.cs" />
+    <Compile Include="Config\StructureMap\RepositoryConventionScanner.cs" />
+    <Compile Include="Config\StructureMap\SaveObjectServiceConventionScanner.cs" />
     <Compile Include="Config\StructureMap\StructureMapBootstrapper.cs" />
     <Compile Include="Config\StructureMap\StructureMapDependencyResolver.cs" />
     <Compile Include="Controllers\HomeController.cs" />
