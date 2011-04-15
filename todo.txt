@@ -1,9 +1,4 @@
 - UI
-<<<<<<< HEAD
-=======
-- add a repository layer on top of the IDataContext?
-- pluggable repositories/get/setobjectservices
->>>>>>> working on controllers
 - script out database
 
 - show list of products
