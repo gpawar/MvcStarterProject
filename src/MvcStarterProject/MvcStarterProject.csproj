@@ -72,6 +72,7 @@
     <Compile Include="Business\GetObjectService.cs" />
     <Compile Include="Business\IDeleteObjectService.cs" />
     <Compile Include="Business\IGetObjectService.cs" />
+    <Compile Include="Business\IGetProductService.cs" />
     <Compile Include="Business\IOrderProcessor.cs" />
     <Compile Include="Business\ISaveObjectService.cs" />
     <Compile Include="Business\IShippingCalculator.cs" />
