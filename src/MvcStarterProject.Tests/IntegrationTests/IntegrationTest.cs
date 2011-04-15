@@ -11,8 +11,8 @@ namespace MvcStarterProject.Tests.IntegrationTests
     {
         protected override void Before_Establish_context()
         {
-            if (!StructureMapBootstrapper.AlreadyStarted)
-                StructureMapBootstrapper.Bootstrap();
+            if (!Bootstrapper.AlreadyStarted)
+                Bootstrapper.Bootstrap();
 
             base.Before_Establish_context();
         }

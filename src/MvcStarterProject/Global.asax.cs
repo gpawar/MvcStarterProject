@@ -34,12 +34,7 @@ namespace MvcStarterProject
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
 
-            InitializeContainer();
-        }
-
-        public void InitializeContainer()
-        {   
-            StructureMapBootstrapper.Bootstrap();
+            Bootstrapper.Bootstrap();
         }
     }
 }

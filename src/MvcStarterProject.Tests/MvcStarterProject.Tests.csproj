@@ -63,6 +63,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="IntegrationTests\Config\StructureMap\StructureMapConfigurationTests.cs" />
     <Compile Include="IntegrationTests\IntegrationTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Specification.cs" />
