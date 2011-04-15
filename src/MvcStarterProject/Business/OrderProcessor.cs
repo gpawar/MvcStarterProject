@@ -4,13 +4,14 @@ namespace MvcStarterProject.Business
 {
     public class OrderProcessor : IOrderProcessor
     {
-        private readonly IRepository<Order> _orderRepository;
+        private readonly IGetObjectService<Order> _getOrderService;
         private readonly ITaxCalculator _taxCalculator;
         private readonly IShippingCalculator _shippingCalculator;
 
-        public OrderProcessor(IRepository<Order> orderRepository, ITaxCalculator taxCalculator, IShippingCalculator shippingCalculator)
+        public OrderProcessor(IGetObjectService<Order> getOrderService, 
+            ITaxCalculator taxCalculator, IShippingCalculator shippingCalculator)
         {
-            _orderRepository = orderRepository;
+            _getOrderService = getOrderService;
             _taxCalculator = taxCalculator;
             _shippingCalculator = shippingCalculator;
         }
@@ -18,7 +19,7 @@ namespace MvcStarterProject.Business
         public decimal CalculateTotalPrice(int orderId)
         {
             // load order from database
-            var order = _orderRepository.Get(orderId);
+            var order = _getOrderService.Get(orderId);
             var totalPriceOfAllProducts = order.TotalPriceOfAllProducts;
 
             // calculate tax

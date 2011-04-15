@@ -14,8 +14,8 @@ namespace MvcStarterProject.Tests.IntegrationTests.Business
 
         protected override void Establish_context()
         {
-            var productRepository = ObjectFactory.GetInstance<IRepository<Product>>();
-            var orderRepository = ObjectFactory.GetInstance<IRepository<Order>>();
+            var productRepository = ObjectFactory.GetInstance<ISaveObjectService<Product>>();
+            var orderRepository = ObjectFactory.GetInstance<ISaveObjectService<Order>>();
  
             var product = new Product { Price = 10, IsActive = true, Name = "foo" };
             productRepository.Create(product);
