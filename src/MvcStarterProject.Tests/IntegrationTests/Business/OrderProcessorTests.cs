@@ -18,14 +18,14 @@ namespace MvcStarterProject.Tests.IntegrationTests.Business
             var orderRepository = ObjectFactory.GetInstance<IRepository<Order>>();
  
             var product = new Product { Price = 10, IsActive = true, Name = "foo" };
-            productRepository.Save(product);
+            productRepository.Create(product);
 
             _order = new Order
                          {
                              StateCode = "OH",
                              Products = new List<Product> { product }
                          };
-            orderRepository.Save(_order);
+            orderRepository.Create(_order);
         }
 
         protected override void Because_of()

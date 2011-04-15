@@ -14,6 +14,7 @@ namespace MvcStarterProject.DataAccess
         T Single(Expression<Func<T, bool>> where);
         T First(Expression<Func<T, bool>> where);
         void Delete(T entity);
-        void Save(T entity);
+        void Create(T entity);
+        void Update(T entity);
     }
 }

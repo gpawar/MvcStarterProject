@@ -1,5 +1,6 @@
 ﻿using System.Configuration;
 using System.Web.Mvc;
+using MvcStarterProject.Business;
 using MvcStarterProject.DataAccess;
 using StructureMap;
 using StructureMap.Pipeline;
@@ -21,6 +22,10 @@ namespace MvcStarterProject.Config.StructureMap
                         x.Scan(scan =>
                                    {
                                        scan.WithDefaultConventions();
+                                       scan.With(new RepositoryConventionScanner());
+                                       scan.With(new GetObjectServiceConventionScanner());
+                                       scan.With(new SaveObjectServiceConventionScanner());
+                                       scan.With(new DeleteObjectServiceConventionScanner());
                                        scan.AssemblyContainingType(typeof(StructureMapBootstrapper));
                                    });
                         
@@ -28,6 +33,10 @@ namespace MvcStarterProject.Config.StructureMap
                             .LifecycleIs(new UniquePerRequestLifecycle())
                             .Use(c =>
                                 new DataContext(ConfigurationManager.ConnectionStrings["MainDatabase"].ConnectionString));
+                        x.For(typeof(IRepository<>)).Use(typeof(Repository<>));
+                        x.For(typeof(IGetObjectService<>)).Use(typeof(GetObjectService<>));
+                        x.For(typeof(ISaveObjectService<>)).Use(typeof(SaveObjectService<>));
+                        x.For(typeof(IDeleteObjectService<>)).Use(typeof(DeleteObjectService<>));
                     });
             DependencyResolver.SetResolver(new StructureMapDependencyResolver(ObjectFactory.Container));
         }

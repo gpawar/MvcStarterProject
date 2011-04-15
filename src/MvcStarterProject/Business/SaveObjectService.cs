@@ -11,9 +11,14 @@ namespace MvcStarterProject.Business
             _repository = repository;
         }
 
-        public void Save(T obj)
+        public void Create(T obj)
         {
-            _repository.Save(obj);
+            _repository.Create(obj);
+        }
+
+        public void Update(T obj)
+        {
+            _repository.Update(obj);
         }
     }
 }

@@ -54,12 +54,15 @@ namespace MvcStarterProject.DataAccess
             _dataContext.SaveChanges();
         }
 
-        public void Save(T entity)
+        public void Create(T entity)
         {
-            if (_set.Contains(entity))
-                _set.Attach(entity);
-            else
-                _set.Add(entity);
+            _set.Add(entity);
+            _dataContext.SaveChanges();
+        }
+
+        public void Update(T entity)
+        {
+            _set.Attach(entity);
             _dataContext.SaveChanges();
         }
     }
