@@ -1,4 +1,5 @@
-﻿using MvcStarterProject.DataAccess;
+﻿using System;
+using MvcStarterProject.DataAccess;
 
 namespace MvcStarterProject.Business
 {
@@ -8,7 +9,7 @@ namespace MvcStarterProject.Business
         private readonly ITaxCalculator _taxCalculator;
         private readonly IShippingCalculator _shippingCalculator;
 
-        public OrderProcessor(IGetObjectService<Order> getOrderService, 
+        public OrderProcessor(IGetObjectService<Order> getOrderService,
             ITaxCalculator taxCalculator, IShippingCalculator shippingCalculator)
         {
             _getOrderService = getOrderService;
@@ -16,19 +17,24 @@ namespace MvcStarterProject.Business
             _shippingCalculator = shippingCalculator;
         }
 
-        public decimal CalculateTotalPrice(int orderId)
+        public decimal SubtotalBeforeTaxAndShipping(Order order)
         {
-            // load order from database
-            var order = _getOrderService.Get(orderId);
-            var totalPriceOfAllProducts = order.TotalPriceOfAllProducts;
+            return order.TotalPriceOfAllProducts;
+        }
 
-            // calculate tax
-            decimal tax = _taxCalculator.CalculateTax(order);
+        public decimal ShippingCharges(Order order)
+        {
+            return _shippingCalculator.CalculateShipping(order);
+        }
 
-            // calculate shipping
-            decimal shippingCharges = _shippingCalculator.CalculateShipping(order);
+        public decimal Tax(Order order)
+        {
+            return _taxCalculator.CalculateTax(order);
+        }
 
-            return totalPriceOfAllProducts + tax + shippingCharges;
+        public decimal TotalPrice(Order order)
+        {
+            return SubtotalBeforeTaxAndShipping(order) + ShippingCharges(order) + Tax(order);
         }
     }
 }

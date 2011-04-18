@@ -1,4 +1,8 @@
-﻿namespace MvcStarterProject.Config.StructureMap
+﻿using System.Web;
+using HttpInterfaces;
+using StructureMap;
+
+namespace MvcStarterProject.Config.StructureMap
 {
     public static class Bootstrapper
     {
@@ -12,5 +16,8 @@
 
             new StructureMapConfiguration().Configure();
         }
+    }
+    public class MvcConfigration
+    {
     }
 }

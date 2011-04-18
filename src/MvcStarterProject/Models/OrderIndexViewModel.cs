@@ -7,7 +7,7 @@ namespace MvcStarterProject.Models
     {
         public IList<Product> AvailableProducts { get; set; }
         public IList<Product> ProductsInOrder { get; set; }
-        public decimal TotalPriceForAllProducts { get; set; }
+        public decimal SubtotalBeforeTaxAndShipping { get; set; }
         public decimal Tax { get; set; }
         public decimal ShippingCharges { get; set; }
         public decimal TotalPrice { get; set; }
