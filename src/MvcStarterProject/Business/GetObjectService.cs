@@ -5,7 +5,7 @@ namespace MvcStarterProject.Business
 {
     public class GetObjectService<T> : IGetObjectService<T> where T : class
     {
-        private readonly IRepository<T> _repository;
+        protected readonly IRepository<T> _repository;
 
         public GetObjectService(IRepository<T> repository)
         {

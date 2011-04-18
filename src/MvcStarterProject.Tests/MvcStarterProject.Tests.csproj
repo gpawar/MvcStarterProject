@@ -75,6 +75,7 @@
     <Compile Include="Specification.cs" />
     <Compile Include="TestDataBuilders\OrderBuilder.cs" />
     <Compile Include="IntegrationTests\Business\OrderProcessorTests.cs" />
+    <Compile Include="UnitTests\Business\GetProductServiceTests.cs" />
     <Compile Include="UnitTests\Business\OrderTests.cs" />
     <Compile Include="UnitTests\Business\ShippingCalculatorTests.cs" />
     <Compile Include="UnitTests\Business\TaxCalculatorTests.cs" />

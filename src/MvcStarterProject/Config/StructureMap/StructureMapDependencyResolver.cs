@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Web.Mvc;
 using StructureMap;
@@ -28,7 +29,6 @@ namespace MvcStarterProject.Config.StructureMap
         public IEnumerable<object> GetServices(Type serviceType)
         {
             return _container.GetAllInstances<object>()
-
                 .Where(s => s.GetType() == serviceType);
         }
 
