@@ -30,7 +30,6 @@
             <th>ID</th>
             <th>Name</th>
             <th>Price</th>
-            <th></th>
         </tr>
         <% foreach (var product in Model.ProductsInOrder)
            { %>
@@ -38,8 +37,23 @@
                <td><%= product.ProductId %></td>
                <td><%: product.Name %></td>
                <td align="right"><%: product.Price.ToString("c") %></td>
-               <td></td>
             </tr>
         <% } %>
+        <tr>
+            <td colspan="2"><b>Subtotal</b></td>
+            <td align="right"><b><%= Model.SubtotalBeforeTaxAndShipping.ToString("c") %></b></td>
+        </tr>
+        <tr>
+            <td colspan="2"><b>Shipping</b></td>
+            <td align="right"><b><%= Model.ShippingCharges.ToString("c") %></b></td>
+        </tr>
+        <tr>
+            <td colspan="2"><b>Tax</b></td>
+            <td align="right"><b><%= Model.Tax.ToString("c") %></b></td>
+        </tr>
+        <tr>
+            <td colspan="2"><b>Total Price</b></td>
+            <td align="right"><b><%= Model.TotalPrice.ToString("c") %></b></td>
+        </tr>
     </table>
 </asp:Content>

@@ -69,5 +69,11 @@ namespace MvcStarterProject.Controllers
             }
             return RedirectToAction("Index");
         }
+
+        public ActionResult NewOrder()
+        {
+            _session["OrderId"] = null;
+            return RedirectToAction("Index");
+        }
     }
 }

@@ -25,11 +25,11 @@ namespace MvcStarterProject.Tests.UnitTests.Controllers
         {
             base.Establish_context();
 
-            _product1 = new Product {ProductId = 1, Name = "one", Price = 1.11m};
-            _product2 = new Product {ProductId = 2, Name = "two", Price = 2.22m};
+            _product1 = new Product { ProductId = 1, Name = "one", Price = 1.11m };
+            _product2 = new Product { ProductId = 2, Name = "two", Price = 2.22m };
 
             _mocker = new RhinoAutoMocker<OrderController>();
-     
+
             // stub the Session
             _session = new FakeHttpSession();
             _mocker.Inject<IHttpSession>(_session);
@@ -51,7 +51,7 @@ namespace MvcStarterProject.Tests.UnitTests.Controllers
 
         protected override void Because_of()
         {
-            _model = (OrderIndexViewModel) ((ViewResult) _mocker.ClassUnderTest.Index()).ViewData.Model;
+            _model = (OrderIndexViewModel)((ViewResult)_mocker.ClassUnderTest.Index()).ViewData.Model;
         }
 
         [Test]
@@ -99,7 +99,7 @@ namespace MvcStarterProject.Tests.UnitTests.Controllers
         [Test]
         public void Should_show_the_total_for_the_entire_order()
         {
-            _model.TotalPrice.ShouldEqual(0m);   
+            _model.TotalPrice.ShouldEqual(0m);
         }
     }
 
@@ -114,7 +114,7 @@ namespace MvcStarterProject.Tests.UnitTests.Controllers
             var order = new Order
                             {
                                 OrderId = 111,
-                                Products = new List<Product> {_product1, _product2},
+                                Products = new List<Product> { _product1, _product2 },
                                 StateCode = "OH"
                             };
             _mocker.Get<IGetObjectService<Order>>().Stub(s => s.Get(111)).Return(order);
@@ -131,7 +131,7 @@ namespace MvcStarterProject.Tests.UnitTests.Controllers
 
         protected override void Because_of()
         {
-            _model = (OrderIndexViewModel) ((ViewResult) _mocker.ClassUnderTest.Index()).ViewData.Model;
+            _model = (OrderIndexViewModel)((ViewResult)_mocker.ClassUnderTest.Index()).ViewData.Model;
         }
 
         [Test]
@@ -187,7 +187,7 @@ namespace MvcStarterProject.Tests.UnitTests.Controllers
         [Test]
         public void Should_show_the_total_for_the_entire_order()
         {
-            _model.TotalPrice.ShouldEqual(8.56m);   
+            _model.TotalPrice.ShouldEqual(8.56m);
         }
     }
 
@@ -208,7 +208,7 @@ namespace MvcStarterProject.Tests.UnitTests.Controllers
             _mocker.Get<IGetObjectService<Order>>().Stub(s => s.Get(111)).Return(_order);
             _session["OrderId"] = 111;
 
-            _mocker.Get<IGetProductService>().Stub(s => s.Get(3)).Return(new Product {ProductId = 3});
+            _mocker.Get<IGetProductService>().Stub(s => s.Get(3)).Return(new Product { ProductId = 3 });
         }
 
         protected override void Because_of()
@@ -235,7 +235,7 @@ namespace MvcStarterProject.Tests.UnitTests.Controllers
         {
             base.Establish_context();
 
-            _mocker.Get<IGetProductService>().Stub(s => s.Get(3)).Return(new Product {ProductId = 3});
+            _mocker.Get<IGetProductService>().Stub(s => s.Get(3)).Return(new Product { ProductId = 3 });
         }
 
         protected override void Because_of()
@@ -246,14 +246,14 @@ namespace MvcStarterProject.Tests.UnitTests.Controllers
         [Test]
         public void Should_add_the_selected_product_to_the_order()
         {
-            var order = (Order) _mocker.Get<ISaveObjectService<Order>>().GetArgumentsForCallsMadeOn(s => s.Create(null))[0][0];
+            var order = (Order)_mocker.Get<ISaveObjectService<Order>>().GetArgumentsForCallsMadeOn(s => s.Create(null))[0][0];
             order.Products.Single().ProductId.ShouldEqual(3);
         }
 
         [Test]
         public void Should_save_the_order_ID_in_session()
         {
-            var order = (Order) _mocker.Get<ISaveObjectService<Order>>().GetArgumentsForCallsMadeOn(s => s.Create(null))[0][0];
+            var order = (Order)_mocker.Get<ISaveObjectService<Order>>().GetArgumentsForCallsMadeOn(s => s.Create(null))[0][0];
             ((int)_mocker.Get<IHttpSession>()["OrderId"]).ShouldEqual(order.OrderId);
         }
 
@@ -263,4 +263,26 @@ namespace MvcStarterProject.Tests.UnitTests.Controllers
             _mocker.Get<ISaveObjectService<Order>>().AssertWasCalled(s => s.Create(Arg<Order>.Is.Anything));
         }
     }
+
+    public class When_creating_a_new_order : Given_an_OrderController
+    {
+        protected override void Establish_context()
+        {
+            base.Establish_context();
+
+            _mocker.Get<IHttpSession>()["OrderId"] = 3;
+        }
+
+        protected override void Because_of()
+        {
+            _mocker.ClassUnderTest.NewOrder();
+        }
+
+        [Test]
+        public void Should_clear_the_OrderId_in_session()
+        {
+            _mocker.Get<IHttpSession>()["OrderId"].ShouldBeNull();
+        }
+    }
+
 }
