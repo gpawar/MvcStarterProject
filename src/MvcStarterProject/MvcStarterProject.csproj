@@ -89,7 +89,7 @@
     <Compile Include="Config\StructureMap\GetObjectServiceConventionScanner.cs" />
     <Compile Include="Config\StructureMap\RepositoryConventionScanner.cs" />
     <Compile Include="Config\StructureMap\SaveObjectServiceConventionScanner.cs" />
-    <Compile Include="Config\StructureMap\Bootstrapper.cs" />
+    <Compile Include="Config\Bootstrapper.cs" />
     <Compile Include="Config\StructureMap\StructureMapConfiguration.cs" />
     <Compile Include="Config\StructureMap\StructureMapDependencyResolver.cs" />
     <Compile Include="Controllers\HomeController.cs" />

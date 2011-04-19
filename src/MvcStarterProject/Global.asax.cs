@@ -1,6 +1,7 @@
 ﻿using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using MvcStarterProject.Config;
 using MvcStarterProject.Config.StructureMap;
 
 namespace MvcStarterProject

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Web.Mvc;
 using HttpInterfaces;
 using MvcStarterProject.Business;
@@ -12,14 +13,17 @@ namespace MvcStarterProject.Controllers
         private IHttpSession _session;
         private readonly IOrderProcessor _orderProcessor;
         private readonly IGetObjectService<Order> _getOrderService;
+        private readonly ISaveObjectService<Order> _saveOrderService;
 
         public OrderController(IGetProductService getProductService,
             IHttpSession session, IOrderProcessor orderProcessor,
-            IGetObjectService<Order> getOrderService)
+            IGetObjectService<Order> getOrderService,
+            ISaveObjectService<Order> saveOrderService)
         {
             _session = session;
             _orderProcessor = orderProcessor;
             _getOrderService = getOrderService;
+            _saveOrderService = saveOrderService;
             _getProductService = getProductService;
         }
 
@@ -46,11 +50,24 @@ namespace MvcStarterProject.Controllers
             return View(model);
         }
 
-        [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult AddItemToOrder(int productId)
+        public ActionResult AddToOrder(int productId)
         {
-            return null;
+            var product = _getProductService.Get(productId);
+            var orderId = (int?) _session["OrderId"];
+            if (orderId != null)
+            {
+                var order = _getOrderService.Get(orderId.Value);
+                order.Products.Add(product);
+                _saveOrderService.Update(order);
+            }
+            else
+            {
+                var order = new Order();
+                order.Products.Add(product);
+                _saveOrderService.Create(order);
+                _session["OrderId"] = order.OrderId;
+            }
+            return RedirectToAction("Index");
         }
-
     }
 }

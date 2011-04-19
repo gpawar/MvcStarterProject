@@ -39,7 +39,7 @@ namespace MvcStarterProject.Config.StructureMap
                                                        });
                         
                                             x.For<IDataContext>()
-                                                .LifecycleIs(new UniquePerRequestLifecycle())
+                                                .LifecycleIs(new HybridLifecycle())
                                                 .Use(c =>
                                                      new DataContext(ConfigurationManager.ConnectionStrings["MainDatabase"].ConnectionString));
                                             x.For(typeof(IRepository<>)).Use(typeof(Repository<>));

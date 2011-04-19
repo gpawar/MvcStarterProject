@@ -103,7 +103,7 @@ namespace MvcStarterProject.Tests.UnitTests.Controllers
         }
     }
 
-    public class When_viewing_an_order : Given_an_OrderController
+    public class When_viewing_an_order_that_has_already_been_started : Given_an_OrderController
     {
         private OrderIndexViewModel _model;
         protected override void Establish_context()
@@ -188,6 +188,79 @@ namespace MvcStarterProject.Tests.UnitTests.Controllers
         public void Should_show_the_total_for_the_entire_order()
         {
             _model.TotalPrice.ShouldEqual(8.56m);   
+        }
+    }
+
+    public class When_adding_a_product_to_an_order_that_has_already_been_started : Given_an_OrderController
+    {
+        private Order _order;
+
+        protected override void Establish_context()
+        {
+            base.Establish_context();
+
+            // order
+            _order = new Order
+                         {
+                             OrderId = 111,
+                             StateCode = "OH"
+                         };
+            _mocker.Get<IGetObjectService<Order>>().Stub(s => s.Get(111)).Return(_order);
+            _session["OrderId"] = 111;
+
+            _mocker.Get<IGetProductService>().Stub(s => s.Get(3)).Return(new Product {ProductId = 3});
+        }
+
+        protected override void Because_of()
+        {
+            _mocker.ClassUnderTest.AddToOrder(3);
+        }
+
+        [Test]
+        public void Should_add_the_selected_product_to_the_order()
+        {
+            _order.Products.Single().ProductId.ShouldEqual(3);
+        }
+
+        [Test]
+        public void Should_save_the_order()
+        {
+            _mocker.Get<ISaveObjectService<Order>>().AssertWasCalled(s => s.Update(_order));
+        }
+    }
+
+    public class When_adding_a_product_to_a_new_order : Given_an_OrderController
+    {
+        protected override void Establish_context()
+        {
+            base.Establish_context();
+
+            _mocker.Get<IGetProductService>().Stub(s => s.Get(3)).Return(new Product {ProductId = 3});
+        }
+
+        protected override void Because_of()
+        {
+            _mocker.ClassUnderTest.AddToOrder(3);
+        }
+
+        [Test]
+        public void Should_add_the_selected_product_to_the_order()
+        {
+            var order = (Order) _mocker.Get<ISaveObjectService<Order>>().GetArgumentsForCallsMadeOn(s => s.Create(null))[0][0];
+            order.Products.Single().ProductId.ShouldEqual(3);
+        }
+
+        [Test]
+        public void Should_save_the_order_ID_in_session()
+        {
+            var order = (Order) _mocker.Get<ISaveObjectService<Order>>().GetArgumentsForCallsMadeOn(s => s.Create(null))[0][0];
+            ((int)_mocker.Get<IHttpSession>()["OrderId"]).ShouldEqual(order.OrderId);
+        }
+
+        [Test]
+        public void Should_save_the_order()
+        {
+            _mocker.Get<ISaveObjectService<Order>>().AssertWasCalled(s => s.Create(Arg<Order>.Is.Anything));
         }
     }
 }

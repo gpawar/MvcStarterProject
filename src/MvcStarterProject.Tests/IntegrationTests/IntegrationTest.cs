@@ -1,6 +1,7 @@
 using System;
 using System.Security.Principal;
 using BankAccount.Tests;
+using MvcStarterProject.Config;
 using MvcStarterProject.Config.StructureMap;
 using StructureMap;
 using System.Diagnostics;

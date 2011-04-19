@@ -11,6 +11,7 @@
             <th>ID</th>
             <th>Name</th>
             <th>Price</th>
+            <th></th>
         </tr>
     <% foreach (var product in Model.AvailableProducts)
        { %>
@@ -18,7 +19,27 @@
                <td><%= product.ProductId %></td>
                <td><%: product.Name %></td>
                <td align="right"><%: product.Price.ToString("c") %></td>
+               <td><%= Html.ActionLink("Add to order", "AddToOrder", "Order", new {productId = product.ProductId}, null) %></td>
            </tr>
     <% } %>
+    </table>
+
+    <h2>Products In Cart</h2>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th></th>
+        </tr>
+        <% foreach (var product in Model.ProductsInOrder)
+           { %>
+            <tr>
+               <td><%= product.ProductId %></td>
+               <td><%: product.Name %></td>
+               <td align="right"><%: product.Price.ToString("c") %></td>
+               <td></td>
+            </tr>
+        <% } %>
     </table>
 </asp:Content>
