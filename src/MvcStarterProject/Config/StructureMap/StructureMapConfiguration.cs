@@ -28,10 +28,10 @@ namespace MvcStarterProject.Config.StructureMap
                                             x.Scan(scan =>
                                                        {
                                                            scan.WithDefaultConventions();
-                                                           scan.With(new RepositoryConventionScanner());
-                                                           scan.With(new GetObjectServiceConventionScanner());
-                                                           scan.With(new SaveObjectServiceConventionScanner());
-                                                           scan.With(new DeleteObjectServiceConventionScanner());
+                                                           scan.ConnectImplementationsToTypesClosing(typeof(IRepository<>));
+                                                           scan.ConnectImplementationsToTypesClosing(typeof(IGetObjectService<>));
+                                                           scan.ConnectImplementationsToTypesClosing(typeof(ISaveObjectService<>));
+                                                           scan.ConnectImplementationsToTypesClosing(typeof(IDeleteObjectService<>));
                                                            scan.AssemblyContainingType(typeof(StructureMapConfiguration));
 
                                                            foreach (var assembly in _assembliesToScan)

@@ -1,7 +1,6 @@
-- UI
 - script out database
 - AutoMockingSpecification???
-- modify testable code presentation to load tax rates from database
+
 
 
 
