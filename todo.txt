@@ -2,12 +2,7 @@
 - script out database
 - AutoMockingSpecification???
 - modify testable code presentation to load tax rates from database
-- what happens when you go to the order page and no order has been created
 
-- show list of products
-- when one is added to the cart, store the products in session
-- clear cart (no deleting of products from the cart)
-- show cart - product list, tax, shipping, total
 
 
 tying it all together
