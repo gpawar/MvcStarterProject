@@ -106,10 +106,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
-    <Content Include="Views\Account\ChangePassword.aspx" />
-    <Content Include="Views\Account\ChangePasswordSuccess.aspx" />
-    <Content Include="Views\Account\LogOn.aspx" />
-    <Content Include="Views\Account\Register.aspx" />
     <Content Include="Views\Order\Index.aspx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -151,7 +147,6 @@
     <Content Include="Scripts\MicrosoftMvcAjax.debug.js" />
     <Content Include="Scripts\MicrosoftMvcValidation.js" />
     <Content Include="Scripts\MicrosoftMvcValidation.debug.js" />
-    <Content Include="Views\Home\About.aspx" />
     <Content Include="Views\Home\Index.aspx" />
     <Content Include="Views\Shared\Error.aspx" />
     <Content Include="Views\Shared\LogOnUserControl.ascx" />
