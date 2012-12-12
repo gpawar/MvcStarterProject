@@ -22,7 +22,7 @@ namespace MvcStarterProject.Config.StructureMap
 
         public void Process(Type type, Registry registry)
         {
-            Type interfaceType = type.FindInterfaceThatCloses(_openGenericType);
+            Type interfaceType = type.FindFirstInterfaceThatCloses(_openGenericType);
             if (interfaceType != null)
             {
                 registry.AddType(interfaceType, type);

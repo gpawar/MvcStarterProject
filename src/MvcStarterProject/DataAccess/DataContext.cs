@@ -25,13 +25,13 @@ namespace MvcStarterProject.DataAccess
             Configuration.LazyLoadingEnabled = true;
         }
 
-        protected override void OnModelCreating(System.Data.Entity.ModelConfiguration.ModelBuilder modelBuilder)
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Order>()
                 .HasMany(m => m.Products)
                 .WithMany()
-                .Map(m => m.MapLeftKey(o => o.OrderId, "OrderId")
-                              .MapRightKey(p => p.ProductId, "ProductId"));
+                .Map(m => m.MapLeftKey("OrderId").MapRightKey("ProductId"));
+            base.OnModelCreating(modelBuilder);
         }
     }
 }
